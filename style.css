@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition :background-color var(0.3s),color var(0.3s);
+  transition :background-color 0.3s,color 0.3s;
 }
 
 body {
@@ -28,86 +28,37 @@ header{
   padding-bottom:15px;
   border-bottom:2-x solid #374151;
 }
-
-/* Left section with progress and stats */
-.dashboard-left {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+h1{
+  font-size:2.5 rem;
+  font-weight:700;
+  background: linear-gradient(to right,#8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  background-clip :text;
+  color:transparent;
+  transition: all 0.3;
+  animation: pulse 2s infinite;
 }
-
-.circle-progress {
-  width: 80px;
-  height: 80px;
-  background: conic-gradient(#3b82f6 37.5%, #2c2f3f 0%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
+h2{
+  font-size:1.5 rem;
+  margin-bottom:15px;
+  color:#f9fafb;
+}
+.user-profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  position:relative;
+}
+.avatar{
+  width:40px;
+  height 40px; 
+  border-radius:50%;
+  background: linear-gradient(to right,#8b5cf6, #6366f1);
+  display:flex;
+  align-items:center;
   justify-content: center;
-}
-
-.circle span {
-  font-weight: bold;
-}
-
-/* Stats and info */
-.dashboard-info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.dashboard-info h2 {
-  font-size: 20px;
+  color: white;
   font-weight: 600;
-}
-
-.stats {
-  display: flex;
-  gap: 15px;
-}
-
-.stat {
-  background-color: #1a1e33;
-  padding: 10px 15px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.stat p {
-  font-size: 14px;
-  color: #ccc;
-}
-
-.stat span {
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-}
-
-.message {
-  font-size: 15px;
-  margin-top: 5px;
-  color: #e2e2e2;
-}
-
-/* Right section for button */
-.dashboard-right {
-  margin-left: auto;
-}
-
-.reset-button {
-  padding: 10px 15px;
-  background-color: transparent;
-  border: 1px solid #3b82f6;
-  border-radius: 8px;
-  color: #3b82f6;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.reset-button:hover {
-  background-color: #3b82f6;
-  color: #fff;
+  transition:transg=form 0.3s;
 }
