@@ -80,11 +80,918 @@
          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                         <span>Profile</span> 
         </div>
+        <div class="menu-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Settings</span> 
+        </div>
+        <div class="menu-item" id="logout-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Logout</span>
+        </div>  
       </div>
     </div>
   </header>
+  <main>
+    <section class="dashboard">
+      <div class="card budget">
+        <h2>Total Budget</h2>
+        <p id="total-budget">$0.00</p>
+        <button id="set-budget" class="btn"> Set Budget</button>
+      </div>
+      <div class="card expenses">
+        <h2>Total Expenses</h2>
+        <p id="total-expenses">$0.00</p>
+      </div> 
+      <div class="card saving">
+        <h2>Saving</h2>
+        <p id="savings">$0.00</p>
+      </div>
+    </section>
+    <section class="expense-management">
+                    <h2>Expense Management</h2>
+                    <div class="action-buttons">
+                        <button id="add-expense" class="btn primary">Add Expense</button>
+                        <button id="export-data" class="btn secondary">Export Data</button>
+                    </div>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="category-filter">Filter by Category:</label>
+                        <select id="category-filter">
+                            <option value="all">All Categories</option>
+                            <option value="accommodation">Accommodation</option>
+                            <option value="food">Food & Drinks</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="activities">Activities</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="day-filter">Filter by Day:</label>
+                        <select id="day-filter">
+                            <option value="all">All Days</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sort-filter">Sort by:</label>
+                        <select id="sort-filter">
+                            <option value="day-asc">Day (Ascending)</option>
+                            <option value="day-desc">Day (Descending)</option>
+                            <option value="amount-asc">Amount (Low to High)</option>
+                            <option value="amount-desc">Amount (High to Low)</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                        </select>
+                    </div>
+                </div>
 
+                <ul id="expense-list" class="expense-list">
+                    <li class="empty-state">No expenses added yet</li>
+                </ul>
+            </section>
 
-</div>
+            <section class="stats-section">
+                <div class="stats-header">
+                    <h2>Expense Statistics</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="avg-daily-expense">$0.00</div>
+                        <div class="stat-label">Average Daily Expense</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="highest-expense">$0.00</div>
+                        <div class="stat-label">Highest Expense</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-days">0</div>
+                        <div class="stat-label">Total Days</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="most-expensive-category">None</div>
+                        <div class="stat-label">Top Category</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 20px; margin-bottom: 10px;">Expenses by Category</h3>
+                <div class="chart-container">
+                    <div class="bar-chart" id="category-chart">
+                        <!-- Chart bars will be added dynamically -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal for adding expenses -->
+        <div id="expense-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add New Expense</h2>
+                <form id="expense-form">
+                    <div class="form-group">
+                        <label for="expense-name">Expense Name:</label>
+                        <input type="text" id="expense-name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expense-amount">Amount ($):</label>
+                            <input type="number" id="expense-amount" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expense-day">Day:</label>
+                            <input type="number" id="expense-day" min="1" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-category">Category:</label>
+                        <select id="expense-category" required>
+                            <option value="accommodation">Accommodation</option>
+                            <option value="food">Food & Drinks</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="activities">Activities</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-notes">Notes (Optional):</label>
+                        <textarea id="expense-notes"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">Add Expense</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal for setting budget -->
+        <div id="budget-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Set Your Vacation Budget</h2>
+                <form id="budget-form">
+                    <div class="form-group">
+                        <label for="budget-amount">Budget Amount ($):</label>
+                        <input type="number" id="budget-amount" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="trip-duration">Trip Duration (Days):</label>
+                        <input type="number" id="trip-duration" min="1" required>
+                    </div>
+                    <button type="submit" class="btn primary">Save Budget</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal for export data -->
+        <div id="export-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Export Your Data</h2>
+                <div style="margin-bottom: 20px;">
+                    <p>Choose a format to export your vacation expense data:</p>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button id="export-csv" class="btn primary">Export as CSV</button>
+                    <button id="export-json" class="btn secondary">Export as JSON</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements - Auth
+            const loginPage = document.getElementById('login-page');
+            const registerPage = document.getElementById('register-page');
+            const appContainer = document.getElementById('app-container');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const showRegisterBtn = document.getElementById('show-register');
+            const showLoginBtn = document.getElementById('show-login');
+            const forgotPasswordBtn = document.getElementById('forgot-password');
+            const logoutBtn = document.getElementById('logout-btn');
+            const userProfile = document.getElementById('user-profile');
+            const userMenu = document.getElementById('user-menu');
+            const userAvatar = document.getElementById('user-avatar');
+            const usernameDisplay = document.getElementById('username-display');
+
+            // DOM Elements - App
+            const themeToggle = document.getElementById('theme-toggle');
+            const setBudgetBtn = document.getElementById('set-budget');
+            const addExpenseBtn = document.getElementById('add-expense');
+            const exportDataBtn = document.getElementById('export-data');
+            const expenseModal = document.getElementById('expense-modal');
+            const budgetModal = document.getElementById('budget-modal');
+            const exportModal = document.getElementById('export-modal');
+            const expenseForm = document.getElementById('expense-form');
+            const budgetForm = document.getElementById('budget-form');
+            const exportCsvBtn = document.getElementById('export-csv');
+            const exportJsonBtn = document.getElementById('export-json');
+            const expenseList = document.getElementById('expense-list');
+            const totalBudgetEl = document.getElementById('total-budget');
+            const totalExpensesEl = document.getElementById('total-expenses');
+            const savingsEl = document.getElementById('savings');
+            const categoryFilter = document.getElementById('category-filter');
+            const dayFilter = document.getElementById('day-filter');
+            const sortFilter = document.getElementById('sort-filter');
+            const closeButtons = document.querySelectorAll('.close');
+            const categoryChart = document.getElementById('category-chart');
+            
+            // Stats elements
+            const avgDailyExpenseEl = document.getElementById('avg-daily-expense');
+            const highestExpenseEl = document.getElementById('highest-expense');
+            const totalDaysEl = document.getElementById('total-days');
+            const mostExpensiveCategoryEl = document.getElementById('most-expensive-category');
+
+            // App State
+            let state = {
+                budget: 0,
+                tripDuration: 0,
+                expenses: [],
+                days: new Set(),
+                currentUser: null
+            };
+
+            // Check if user is logged in
+            function checkAuth() {
+                const currentUser = localStorage.getItem('currentUser');
+                if (currentUser) {
+                    state.currentUser = JSON.parse(currentUser);
+                    loginPage.style.display = 'none';
+                    registerPage.style.display = 'none';
+                    appContainer.style.display = 'block';
+                    
+                    // Update user display
+                    if (state.currentUser.username) {
+                        usernameDisplay.textContent = state.currentUser.username;
+                        userAvatar.textContent = state.currentUser.username.charAt(0).toUpperCase();
+                    }
+                    
+                    // Load user data
+                    loadData();
+                } else {
+                    loginPage.style.display = 'flex';
+                    registerPage.style.display = 'none';
+                    appContainer.style.display = 'none';
+                }
+            }
+
+            // Authentication functions
+            function login(username, password, remember) {
+                // In a real app, this would validate against a server
+                // For demo, we'll just check localStorage
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.username === username && u.password === password);
+                
+                if (user) {
+                    state.currentUser = {
+                        id: user.id,
+                        username: user.username,
+                        email: user.email
+                    };
+                    
+                    localStorage.setItem('currentUser', JSON.stringify(state.currentUser));
+                    
+                    if (remember) {
+                        // In a real app, this would set a persistent cookie
+                        localStorage.setItem('rememberMe', 'true');
+                    }
+                    
+                    checkAuth();
+                    return true;
+                }
+                
+                return false;
+            }
+
+            function register(username, email, password) {
+                // In a real app, this would send data to a server
+                // For demo, we'll just store in localStorage
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                
+                // Check if username already exists
+                if (users.some(u => u.username === username)) {
+                    return false;
+                }
+                
+                const newUser = {
+                    id: Date.now(),
+                    username,
+                    email,
+                    password
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Auto login after registration
+                state.currentUser = {
+                    id: newUser.id,
+                    username: newUser.username,
+                    email: newUser.email
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(state.currentUser));
+                checkAuth();
+                return true;
+            }
+
+            function logout() {
+                localStorage.removeItem('currentUser');
+                state.currentUser = null;
+                checkAuth();
+            }
+
+            // Load data from localStorage
+            function loadData() {
+                if (!state.currentUser) return;
+                
+                const savedState = localStorage.getItem(`vacationExpenseTracker_${state.currentUser.id}`);
+                if (savedState) {
+                    const parsedState = JSON.parse(savedState);
+                    state.budget = parsedState.budget || 0;
+                    state.tripDuration = parsedState.tripDuration || 0;
+                    state.expenses = parsedState.expenses || [];
+                    
+                    // Rebuild the days Set
+                    state.days = new Set(Array.from(parsedState.days || []));
+                    
+                    // Update UI
+                    updateDashboard();
+                    renderExpenses();
+                    updateDayFilter();
+                    updateStats();
+                    renderCategoryChart();
+                }
+            }
+
+            // Save data to localStorage
+            function saveData() {
+                if (!state.currentUser) return;
+                
+                // Convert Set to Array for JSON serialization
+                const stateToSave = {
+                    ...state,
+                    days: Array.from(state.days)
+                };
+                
+                localStorage.setItem(`vacationExpenseTracker_${state.currentUser.id}`, JSON.stringify(stateToSave));
+            }
+
+            // Toggle user menu
+            userProfile.addEventListener('click', function(e) {
+                e.stopPropagation();
+                userMenu.classList.toggle('active');
+            });
+
+            // Close user menu when clicking outside
+            document.addEventListener('click', function() {
+                userMenu.classList.remove('active');
+            });
+
+            // Open budget modal
+            setBudgetBtn.addEventListener('click', function() {
+                budgetModal.classList.add('active');
+                document.getElementById('budget-amount').value = state.budget;
+                document.getElementById('trip-duration').value = state.tripDuration;
+            });
+
+            // Open expense modal
+            addExpenseBtn.addEventListener('click', function() {
+                expenseModal.classList.add('active');
+            });
+
+            // Open export modal
+            exportDataBtn.addEventListener('click', function() {
+                exportModal.classList.add('active');
+            });
+
+            // Close modals
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    expenseModal.classList.remove('active');
+                    budgetModal.classList.remove('active');
+                    exportModal.classList.remove('active');
+                });
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === expenseModal) {
+                    expenseModal.classList.remove('active');
+                }
+                if (event.target === budgetModal) {
+                    budgetModal.classList.remove('active');
+                }
+                if (event.target === exportModal) {
+                    exportModal.classList.remove('active');
+                }
+            });
+
+            // Set budget
+            budgetForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const budgetAmount = parseFloat(document.getElementById('budget-amount').value);
+                const tripDuration = parseInt(document.getElementById('trip-duration').value);
+                
+                state.budget = budgetAmount;
+                state.tripDuration = tripDuration;
+                
+                updateDashboard();
+                updateStats();
+                saveData();
+                budgetModal.classList.remove('active');
+                
+                // Show success notification
+                showNotification('Budget updated successfully!', 'success');
+            });
+
+            // Add expense
+            expenseForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('expense-name').value;
+                const amount = parseFloat(document.getElementById('expense-amount').value);
+                const category = document.getElementById('expense-category').value;
+                const day = parseInt(document.getElementById('expense-day').value);
+                const notes = document.getElementById('expense-notes').value;
+                
+                const newExpense = {
+                    id: Date.now(),
+                    name,
+                    amount,
+                    category,
+                    day,
+                    notes,
+                    date: new Date().toISOString()
+                };
+                
+                state.expenses.push(newExpense);
+                state.days.add(day);
+                
+                updateDashboard();
+                renderExpenses();
+                updateDayFilter();
+                updateStats();
+                renderCategoryChart();
+                saveData();
+                
+                expenseForm.reset();
+                expenseModal.classList.remove('active');
+                
+                // Show success notification
+                showNotification('Expense added successfully!', 'success');
+            });
+
+            // Export data as CSV
+            exportCsvBtn.addEventListener('click', function() {
+                const headers = ['Name', 'Amount', 'Category', 'Day', 'Notes', 'Date'];
+                let csvContent = headers.join(',') + '\n';
+                
+                state.expenses.forEach(expense => {
+                    const row = [
+                        `"${expense.name}"`,
+                        expense.amount,
+                        expense.category,
+                        expense.day,
+                        `"${expense.notes}"`,
+                        new Date(expense.date).toLocaleDateString()
+                    ];
+                    csvContent += row.join(',') + '\n';
+                });
+                
+                downloadFile(csvContent, 'vacation-expenses.csv', 'text/csv');
+                exportModal.classList.remove('active');
+            });
+
+            // Export data as JSON
+            exportJsonBtn.addEventListener('click', function() {
+                const dataToExport = {
+                    budget: state.budget,
+                    tripDuration: state.tripDuration,
+                    expenses: state.expenses,
+                    exportDate: new Date().toISOString()
+                };
+                
+                const jsonContent = JSON.stringify(dataToExport, null, 2);
+                downloadFile(jsonContent, 'vacation-expenses.json', 'application/json');
+                exportModal.classList.remove('active');
+            });
+
+            // Helper function to download file
+            function downloadFile(content, fileName, contentType) {
+                const a = document.createElement('a');
+                const file = new Blob([content], { type: contentType });
+                a.href = URL.createObjectURL(file);
+                a.download = fileName;
+                a.click();
+                URL.revokeObjectURL(a.href);
+            }
+
+            // Filter expenses
+            categoryFilter.addEventListener('change', renderExpenses);
+            dayFilter.addEventListener('change', renderExpenses);
+            sortFilter.addEventListener('change', renderExpenses);
+
+            // Update dashboard numbers
+            function updateDashboard() {
+                const totalExpenses = state.expenses.reduce((total, expense) => total + expense.amount, 0);
+                const savings = state.budget - totalExpenses;
+                
+                totalBudgetEl.textContent = formatCurrency(state.budget);
+                totalExpensesEl.textContent = formatCurrency(totalExpenses);
+                savingsEl.textContent = formatCurrency(savings);
+                
+                // Change color based on savings
+                if (savings < 0) {
+                    savingsEl.style.color = 'var(--danger-color)';
+                } else {
+                    savingsEl.style.color = 'var(--secondary-color)';
+                }
+            }
+
+            // Update day filter options
+            function updateDayFilter() {
+                // Clear existing options except "All Days"
+                while (dayFilter.options.length > 1) {
+                    dayFilter.remove(1);
+                }
+                
+                // Add day options
+                const sortedDays = Array.from(state.days).sort((a, b) => a - b);
+                sortedDays.forEach(day => {
+                    const option = document.createElement('option');
+                    option.value = day;
+                    option.textContent = `Day ${day}`;
+                    dayFilter.appendChild(option);
+                });
+            }
+
+            // Render expenses list
+            function renderExpenses() {
+                const selectedCategory = categoryFilter.value;
+                const selectedDay = dayFilter.value;
+                const sortOption = sortFilter.value;
+                
+                // Filter expenses
+                let filteredExpenses = state.expenses;
+                
+                if (selectedCategory !== 'all') {
+                    filteredExpenses = filteredExpenses.filter(expense => expense.category === selectedCategory);
+                }
+                
+                if (selectedDay !== 'all') {
+                    filteredExpenses = filteredExpenses.filter(expense => expense.day === parseInt(selectedDay));
+                }
+                
+                // Sort expenses
+                switch (sortOption) {
+                    case 'day-asc':
+                        filteredExpenses.sort((a, b) => a.day - b.day);
+                        break;
+                    case 'day-desc':
+                        filteredExpenses.sort((a, b) => b.day - a.day);
+                        break;
+                    case 'amount-asc':
+                        filteredExpenses.sort((a, b) => a.amount - b.amount);
+                        break;
+                    case 'amount-desc':
+                        filteredExpenses.sort((a, b) => b.amount - a.amount);
+                        break;
+                    case 'name-asc':
+                        filteredExpenses.sort((a, b) => a.name.localeCompare(b.name));
+                        break;
+                    case 'name-desc':
+                        filteredExpenses.sort((a, b) => b.name.localeCompare(a.name));
+                        break;
+                }
+                
+                // Clear list
+                expenseList.innerHTML = '';
+                
+                // Show empty state if no expenses
+                if (filteredExpenses.length === 0) {
+                    const emptyState = document.createElement('li');
+                    emptyState.className = 'empty-state';
+                    emptyState.textContent = 'No expenses found';
+                    expenseList.appendChild(emptyState);
+                    return;
+                }
+                
+                // Render expenses
+                filteredExpenses.forEach((expense, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'expense-item';
+                    li.style.animationDelay = `${index * 0.05}s`;
+                    li.innerHTML = `
+                        <div class="expense-details">
+                            <h3>${expense.name}</h3>
+                            <div class="expense-meta">
+                                <span>Day ${expense.day}</span>
+                                <span class="category-badge category-${expense.category}">${formatCategory(expense.category)}</span>
+                                ${expense.notes ? `<span title="${expense.notes}">📝</span>` : ''}
+                            </div>
+                        </div>
+                        <div class="expense-amount">${formatCurrency(expense.amount)}</div>
+                        <div>
+                            <button class="action-btn edit-btn" data-id="${expense.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                            </button>
+                            <button class="action-btn delete-btn" data-id="${expense.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                            </button>
+                        </div>
+                    `;
+                    expenseList.appendChild(li);
+                });
+                
+                // Add delete event listeners
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        deleteExpense(id);
+                    });
+                });
+                
+                // Add edit event listeners
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        editExpense(id);
+                    });
+                });
+            }
+
+            // Delete expense
+            function deleteExpense(id) {
+                state.expenses = state.expenses.filter(expense => expense.id !== id);
+                
+                // Recalculate days
+                state.days = new Set(state.expenses.map(expense => expense.day));
+                
+                updateDashboard();
+                renderExpenses();
+                updateDayFilter();
+                updateStats();
+                renderCategoryChart();
+                saveData();
+                
+                // Show notification
+                showNotification('Expense deleted successfully!', 'success');
+            }
+
+            // Edit expense
+            function editExpense(id) {
+                const expense = state.expenses.find(e => e.id === id);
+                if (!expense) return;
+                
+                // Fill form with expense data
+                document.getElementById('expense-name').value = expense.name;
+                document.getElementById('expense-amount').value = expense.amount;
+                document.getElementById('expense-category').value = expense.category;
+                document.getElementById('expense-day').value = expense.day;
+                document.getElementById('expense-notes').value = expense.notes || '';
+                
+                // Change form submit behavior
+                const form = document.getElementById('expense-form');
+                const originalSubmitHandler = form.onsubmit;
+                
+                form.onsubmit = function(e) {
+                    e.preventDefault();
+                    
+                    // Update expense
+                    expense.name = document.getElementById('expense-name').value;
+                    expense.amount = parseFloat(document.getElementById('expense-amount').value);
+                    expense.category = document.getElementById('expense-category').value;
+                    expense.day = parseInt(document.getElementById('expense-day').value);
+                    expense.notes = document.getElementById('expense-notes').value;
+                    
+                    // Update days set
+                    state.days = new Set(state.expenses.map(e => e.day));
+                    
+                    // Update UI
+                    updateDashboard();
+                    renderExpenses();
+                    updateDayFilter();
+                    updateStats();
+                    renderCategoryChart();
+                    saveData();
+                    
+                    // Reset form and close modal
+                    form.reset();
+                    expenseModal.classList.remove('active');
+                    
+                    // Restore original submit handler
+                    form.onsubmit = originalSubmitHandler;
+                    
+                    // Show notification
+                    showNotification('Expense updated successfully!', 'success');
+                };
+                
+                // Open modal
+                expenseModal.classList.add('active');
+            }
+
+            // Update statistics
+            function updateStats() {
+                if (state.expenses.length === 0) {
+                    avgDailyExpenseEl.textContent = formatCurrency(0);
+                    highestExpenseEl.textContent = formatCurrency(0);
+                    totalDaysEl.textContent = state.tripDuration || 0;
+                    mostExpensiveCategoryEl.textContent = 'None';
+                    return;
+                }
+                
+                // Calculate average daily expense
+                const totalExpenses = state.expenses.reduce((total, expense) => total + expense.amount, 0);
+                const uniqueDays = state.days.size;
+                const avgDailyExpense = uniqueDays > 0 ? totalExpenses / uniqueDays : 0;
+                
+                // Find highest expense
+                const highestExpense = Math.max(...state.expenses.map(expense => expense.amount));
+                
+                // Find most expensive category
+                const categoryTotals = {};
+                state.expenses.forEach(expense => {
+                    if (!categoryTotals[expense.category]) {
+                        categoryTotals[expense.category] = 0;
+                    }
+                    categoryTotals[expense.category] += expense.amount;
+                });
+                
+                let mostExpensiveCategory = 'None';
+                let highestCategoryTotal = 0;
+                
+                for (const category in categoryTotals) {
+                    if (categoryTotals[category] > highestCategoryTotal) {
+                        highestCategoryTotal = categoryTotals[category];
+                        mostExpensiveCategory = formatCategory(category);
+                    }
+                }
+                
+                // Update UI
+                avgDailyExpenseEl.textContent = formatCurrency(avgDailyExpense);
+                highestExpenseEl.textContent = formatCurrency(highestExpense);
+                totalDaysEl.textContent = state.tripDuration || uniqueDays;
+                mostExpensiveCategoryEl.textContent = mostExpensiveCategory;
+            }
+
+            // Render category chart
+            function renderCategoryChart() {
+                // Clear chart
+                categoryChart.innerHTML = '';
+                
+                if (state.expenses.length === 0) {
+                    return;
+                }
+                
+                // Calculate category totals
+                const categoryTotals = {};
+                state.expenses.forEach(expense => {
+                    if (!categoryTotals[expense.category]) {
+                        categoryTotals[expense.category] = 0;
+                    }
+                    categoryTotals[expense.category] += expense.amount;
+                });
+                
+                // Find highest total for scaling
+                const highestTotal = Math.max(...Object.values(categoryTotals));
+                
+                // Create bars
+                Object.entries(categoryTotals).forEach(([category, total], index) => {
+                    const height = (total / highestTotal) * 100;
+                    
+                    const bar = document.createElement('div');
+                    bar.className = 'chart-bar';
+                    bar.style.height = `${height}%`;
+                    bar.style.animationDelay = `${index * 0.1}s`;
+                    
+                    const label = document.createElement('div');
+                    label.className = 'chart-bar-label';
+                    label.textContent = formatCategory(category);
+                    
+                    const value = document.createElement('div');
+                    value.className = 'chart-bar-value';
+                    value.textContent = formatCurrency(total);
+                    
+                    bar.appendChild(label);
+                    bar.appendChild(value);
+                    categoryChart.appendChild(bar);
+                });
+            }
+
+            // Show notification
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+                
+                // Style the notification
+                Object.assign(notification.style, {
+                    position: 'fixed',
+                    bottom: '20px',
+                    right: '20px',
+                    padding: '10px 20px',
+                    borderRadius: '5px',
+                    color: 'white',
+                    zIndex: '9999',
+                    animation: 'slideInRight 0.3s, fadeOut 0.5s 2.5s forwards'
+                });
+                
+                // Set background color based on type
+                if (type === 'success') {
+                    notification.style.backgroundColor = 'var(--success-color)';
+                } else if (type === 'error') {
+                    notification.style.backgroundColor = 'var(--danger-color)';
+                } else if (type === 'warning') {
+                    notification.style.backgroundColor = 'var(--warning-color)';
+                } else {
+                    notification.style.backgroundColor = 'var(--primary-color)';
+                }
+                
+                document.body.appendChild(notification);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            // Format currency
+            function formatCurrency(amount) {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(amount);
+            }
+
+            // Format category
+            function formatCategory(category) {
+                return category.charAt(0).toUpperCase() + category.slice(1);
+            }
+
+            // Auth event listeners
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('remember-me').checked;
+                
+                if (login(username, password, rememberMe)) {
+                    showNotification('Login successful!', 'success');
+                } else {
+                    showNotification('Invalid username or password', 'error');
+                }
+            });
+
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('reg-username').value;
+                const email = document.getElementById('reg-email').value;
+                const password = document.getElementById('reg-password').value;
+                const confirmPassword = document.getElementById('reg-confirm-password').value;
+                
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match', 'error');
+                    return;
+                }
+                
+                if (register(username, email, password)) {
+                    showNotification('Registration successful!', 'success');
+                } else {
+                    showNotification('Username already exists', 'error');
+                }
+            });
+
+            showRegisterBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginPage.style.display = 'none';
+                registerPage.style.display = 'flex';
+            });
+
+            showLoginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                registerPage.style.display = 'none';
+                loginPage.style.display = 'flex';
+            });
+
+            forgotPasswordBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification('Password reset functionality coming soon!', 'info');
+            });
+
+            logoutBtn.addEventListener('click', function() {
+                logout();
+                showNotification('Logged out successfully', 'success');
+            });
+
+            // Initialize app
+            checkAuth();
+        });
+    </script>
 </body>
 </html>
