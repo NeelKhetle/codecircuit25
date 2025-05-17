@@ -5,38 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Habit Tracker Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnet" href="https://fonts.googleapis.com">
+  <link rel ="preconnet" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  
 </head>
 <body>
-    <h1>Vacation budget Tracker</h1>
-  <div class="dashboard">
-    <div class="dashboard-left">
-      <div class="circle-progress">
-        <div class="circle">
-          <span>38.5%</span>
-        </div>
-      </div>
-      <div class="dashboard-info">
-        <h2>Friday, May 16, 2025</h2>
-        <div class="stats">
-          <div class="stat">
-            <p>Total Budget</p>
-            <span>3</span>
-          </div>
-          <div class="stat">
-            <p>Spended</p>
-            <span>0</span>
-          </div>
-          <div class="stat">
-            <p>Remaining</p>
-            <span>3</span>
-          </div>
-        </div>
-        <p class="message">Let's track your Expencess 👍</p>
-      </div>
+<div id="login-page" class ="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Vacation Tracker</h1>
+      <p>log in to manage your Vacation expenses</p>
     </div>
-    <div class="dashboard-right">
-      <button class="reset-button">🔄 Reset for New Vacation</button>
+    <form id="login-form" class="auth-form">
+      <div class="form-group">
+        <label for="username">Username</label> 
+        <input type="text" id="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+      <div class="form-group" checkbox-container>
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Remember me</label>
+
+      </div>
+      <button type="submit" class="btn primary"style="width:100%">Log In </button>
+    </form>
+    <div class="auth-footer">
+      <p>Don't have an account?<a href ="#" id="show-register" class="auth-link">Register</a></p>
+      <p style="margin-top: 10px;"><a href ="#" id ="forgot-password" class="auth-link">Forget password?</a></a></p> 
     </div>
   </div>
+</div>
+
+<div id ="register-page" class="auth-container" style="display:none;">
+  
+</div>
 </body>
 </html>
